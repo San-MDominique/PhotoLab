@@ -1,0 +1,81 @@
+<%- include('./partials/head.ejs') %>
+<body>
+    <div class="container">
+
+        <%- include('./partials/header.ejs') %>
+
+        <div class="body">
+
+            <div class="section_title">
+                <h1>Toutes Les Publications</h1>
+            </div>
+
+            <section class="main_photo">
+                <% if (Allphoto.length == 0){ %>
+                        <h3> Aucune photo Pour le moment!</h3>
+                <% } else { %> 
+
+                    <% for (let i = 0; i < Allphoto.length; i++) { %> 
+
+                        <div class="photo-card">
+                            
+                            <div class="photo-card_up">
+                                <div class="photo-card_likes">
+                                    <a class="likes" href="/likeallphoto/<%=Allphoto[i].id %>"><p><%=Allphoto[i].likes.length %> <i class="ri-heart-3-fill"></i></p></a>
+                                </div>
+
+                                <div class="photo-card_comment">
+                                    <a class="likes" href="/photo/<%=Allphoto[i].id %>"><p><%=Allphoto[i].comment.length %> <i class="ri-chat-3-fill"></i></p></a>
+                                </div>
+        
+                                <div class="card_img">
+                                    
+                                    <a href="/photo/<%=Allphoto[i].id %>"><img src="./img/photo/<%=Allphoto[i].photo %>" alt="Photo name"></a>
+                                </div>
+                            </div>
+
+                            <div class="photo-card_bottom">
+        
+                                <div class="photo_des">
+                                    <div class="descr"><span>Posted By: <br> <%= Allphoto[i].postedBy.username %> <br> Created At : <%=Allphoto[i].created_At.toLocaleString('fr-fr', {day :'numeric', month: 'long', year:
+                                        'numeric'}) %></span></div>
+                                    <img src="./img/user/<%= Allphoto[i].postedBy.photo %>" alt="">
+                                </div>
+        
+                            </div>
+                        </div>
+
+                    <% } %>
+
+                <% } %>
+
+                
+
+            </section>
+<!-- 
+            <section>
+                <nav aria-label="...">
+                    <ul class="pagination">
+                      <li class="page-item disabled">
+                        <span class="page-link">Previous</span>
+                      </li>
+                      <li class="page-item"><a class="page-link" href="#">1</a></li>
+                      <li class="page-item active">
+                        <span class="page-link">
+                          2
+                          <span class="sr-only"></span>
+                        </span>
+                      </li>
+                      <li class="page-item"><a class="page-link" href="#">3</a></li>
+                      <li class="page-item">
+                        <a class="page-link" href="#">Next</a>
+                      </li>
+                    </ul>
+                  </nav>
+            </section> -->
+
+        </div>
+        
+        <%- include('./partials/footer.ejs') %>
+       
+</html>

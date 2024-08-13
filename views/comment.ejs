@@ -1,0 +1,89 @@
+<%- include('./partials/head.ejs') %>
+<body>
+    <div class="container">
+
+        <%- include('./partials/headerInt.ejs') %>
+
+        <div class="body">
+
+            <section class="main_photo">
+               
+                
+                        <div class="photo-card_com">
+                            <div class="photo-card_up_com">
+                                <div class="photo-card_likes">
+                                    <a class="likes" href="/likeCom/<%=onePhoto.id %>"><p><%=onePhoto.likes.length %> <i class="ri-heart-3-fill"></i></p></a>
+                                </div>
+
+                                <div class="photo-card_comment">
+                                    <a class="likes" href=""><p><%=onePhoto.comment.length %> <i class="ri-chat-3-fill"></i></p></a>
+                                </div>
+        
+                                <div class="card_img_com">
+                                    <img src="/./img/photo/<%=onePhoto.photo %>" alt="<%=onePhoto.photo %>">
+                                </div>
+                            </div>
+                            <div class="photo-card_bottom_com">
+        
+                                <div class="photo_des_com">
+                                    <div class="descr_com"><span>Posted By:  <%=onePhoto.postedBy.username %> <br> Created At : <%=onePhoto.created_At.toLocaleString('fr-fr', {day :'numeric', month: 'long', year:
+                                        'numeric'}) %></span></div>
+                                    <img src="/./img/user/<%=onePhoto.postedBy.photo %>" alt="">
+                                </div>
+        
+                            </div>
+                        </div>
+                        
+                        <div class="photo-card_com-text">
+                            <div class="showingCom">
+                                <% if (allCom.length == 0){ %>
+                                    <div class="empty_Com">
+                                        <i class="ri-chat-delete-fill"></i>
+                                        <p>Soyez la première personne à poster un commentaire</p>
+                                    </div>
+                                <% } else { %> 
+
+                                    <% for (let i = 0; i < allCom.length; i++) { %> 
+                                <div class="comCard">
+                                    <img class="img_comCard" src="/./img/user/<%=allCom[i].profil%>" alt="">
+                                    <p class="text_comCard"> <span style="font-weight: 600;"><%=allCom[i].postedBy%></span> <br><%=allCom[i].comment%></p>
+                                    
+                                    <% if (allCom[i].postedBy == user.username ){ %>
+                                        <a href="/delcom/<%=allCom[i].id%>/<%=onePhoto.id%>"><i class="ri-delete-bin-6-fill"></i></a>
+                                    <% } else { %> <% } %>
+                                </div>
+
+                                    <% } %>
+
+                                <% } %>     
+                              
+                            </div>
+
+                            <div class="formCom">
+                                    <div class="formSection">
+                                        <form action="/photo/<%=onePhoto.id%>" method="POST"  >
+                                            <input class="ipt_com" id="text" type="text" placeholder="Commenter la photo..." name="comment" required>
+                                            <input type="text" name="id" required class="d-none" value="<%=onePhoto.id%>">
+
+                                            <button type="submit" name ="submit"  class="btn btn-primary btn-sm">Commenter</button>
+
+                                        </form>
+                                    </div>
+                            </div>
+
+                        </div>
+
+                        
+
+                    
+
+
+                
+
+            </section>
+
+        </div>
+        
+        <%- include('./partials/footer.ejs') %>
+       
+</html>

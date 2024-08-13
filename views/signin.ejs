@@ -1,0 +1,75 @@
+<%- include('./partials/head.ejs') %>
+<body>
+
+    <div class="container">
+
+
+        <% if(error && error !="") {%>
+            <div class="alerts alertDanger">
+                <h1><i class="ri-emotion-unhappy-line"></i></h1>
+                <p><%= error %></p>
+            </div>
+         <% } %>
+
+         
+
+        
+
+        <div class="login_card">
+            <div class="left_login">
+            </div>
+            <div class="right_login">
+                <div class="section_title title_login">
+                    <h1>Cree un compte</h1>
+                </div>
+
+                <form class="loginForm" action="/singin" method="POST">
+
+                    <div class="formSection"> 
+                        <div class="row">
+                            <% if(field && field !="") {%>
+                                <input class="ipt" id="username" type="username" value="<%=field[0]%>" name="username" required>
+                             <% } else{ %> 
+                                <input class="ipt" id="username" type="username" placeholder="username" name="username" required>
+                            <% } %>
+        
+                        </div>
+                     </div>
+
+                    <div class="formSection"> 
+                       <div class="row">
+                            <% if(field && field !="") {%>
+                                <input class="ipt" id="email" type="email" value="<%=field[1]%>" name="email" required>
+                             <% } else{ %> 
+                                <input class="ipt" id="email" type="email" placeholder="email" name="email" required>
+                            <% } %>
+                       </div>
+                    </div>
+        
+                    <div class="formSection">
+                       <div class="row"> 
+                            <% if(field && field !="") {%>
+                                <input class="ipt" id="password" type="password" value="<%=field[2]%>" name="password" required>
+                             <% } else{ %> 
+                                <input class="ipt" id="password" type="password" placeholder="password" name="password" required>
+                            <% } %>
+                       </div>
+                    </div>
+        
+                    <div class="row">
+                        <button type="submit" name ="submit"  class="btn btn-danger btn2">S'inscrire</button>
+                    </div>
+                   
+                </form>
+
+                <div class="loginLink">
+                    <a href="/login">Me connecter</a>
+                    <a href="/">ACCUEIL</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <script src="/js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<%- include('./partials/head.ejs') %>
+<body>
+    <div class="container">
+
+        <%- include('./partials/header.ejs') %>
+       
+
+        <div class="body">
+
+            
+
+            <div class="section_title">
+                <h1>Dernière Publications</h1>
+            </div>
+
+            <section class="main_photo">
+                <% if (topFive.length == 0){ %>
+                        <h3> Aucune photo Pour le moment!</h3>
+                <% } else { %> 
+
+                    <% for (let i = 0; i < topFive.length; i++) { %> 
+
+                        <div class="photo-card">
+                            <div class="photo-card_up">
+                                <div class="photo-card_likes">
+                                    <a class="likes" href="/likeindex/<%=topFive[i].id %>"><p><%=topFive[i].likes.length %> <i class="ri-heart-3-fill"></i></p></a>
+                                </div>
+                                <div class="photo-card_comment">
+                                    <a class="likes" href="/photo/<%=topFive[i].id %>"><p><%=topFive[i].comment.length %> <i class="ri-chat-3-fill"></i></p></a>
+                                </div>
+        
+                                <div class="card_img">
+                                    <a href="/photo/<%=topFive[i].id %>"><img src="./img/photo/<%=topFive[i].photo %>" alt="Photo name"></a>
+                                </div>
+                            </div>
+                            <div class="photo-card_bottom">
+        
+                                <div class="photo_des">
+                                    <div class="descr"><span>Posted By: <br> <%= topFive[i].postedBy.username %> <br> Created At : <%=topFive[i].created_At.toLocaleString('fr-fr', {day :'numeric', month: 'long', year:
+                                        'numeric'}) %></span></div>
+                                    <img src="./img/user/<%=topFive[i].postedBy.photo %>" alt="">
+                                </div>
+        
+                            </div>
+                        </div>
+
+                    <% } %>
+
+                <% } %>
+
+                
+
+            </section>
+
+            <div class="section_title">
+                <h1>Le plus de likes</h1>
+            </div>
+
+            <section class="main_photo">
+                
+
+                    <% for (let i = 0; i < mostlike.length; i++) { %> 
+
+                        <div class="photo-card">
+                            <div class="photo-card_up">
+                                <div class="photo-card_likes">
+                                    <a class="likes" href="/likeindex/<%=mostlike[i].id %>"><p><%=mostlike[i].likes.length %> <i class="ri-heart-3-fill"></i></p></a>
+                                </div>
+
+                                <div class="photo-card_comment">
+                                    <a class="likes" href="/photo/<%=mostlike[i].id %>"><p><%=mostlike[i].comment.length %> <i class="ri-chat-3-fill"></i></p></a>
+                                </div>
+        
+                                <div class="card_img">
+                                    <a href="/photo/<%=mostlike[i].id %>"><img src="./img/photo/<%=mostlike[i].photo %>" alt="Photo name"></a>
+                                    
+                                </div>
+                            </div>
+                            <div class="photo-card_bottom">
+        
+                                <div class="photo_des">
+                                    <div class="descr"><span>Posted By: <br> <%= mostlike[i].postedBy.username %> <br> Created At : <%=mostlike[i].created_At.toLocaleString('fr-fr', {day :'numeric', month: 'long', year:
+                                        'numeric'}) %></span></div>
+                                    <img src="./img/user/<%=mostlike[i].postedBy.photo %>" alt="">
+                                </div>
+        
+                            </div>
+                        </div>
+
+                    <% } %>
+
+                
+
+            </section>
+
+        </div>
+
+        <%- include('./partials/footer.ejs') %>
+       
+</html>

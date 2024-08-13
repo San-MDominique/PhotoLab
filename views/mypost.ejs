@@ -1,0 +1,75 @@
+<%- include('./partials/head.ejs') %>
+<body>
+    <div class="container">
+
+        <%- include('./partials/header.ejs') %>
+
+        <div class="body">
+            <div class="profil">
+                <h5>Changer Ma photo de profil</h5>
+                <form action="/mypostProf" method="POST" enctype="multipart/form-data">
+                    <input type="file" name="photo" id="photo" class="inputfile" required/>
+                    <button type="submit" name ="submit" class="btn btn-primary btn2">Changer ma photo</button>
+                </form>
+            </div>
+            
+
+            <hr>
+
+
+            <div class="section_title">
+                <h1>Mes Publications</h1> 
+            </div>
+
+            <form action="/mypost" method="POST" enctype="multipart/form-data">
+                <input type="file" name="photo" id="photo" class="inputfile" required/>
+                <button type="submit" name ="submit" class="btn btn-primary btn2">Poster</button>
+            </form>
+
+            <section class="main_photo">
+                <% if (Userphoto.length == 0){ %>
+                        <h3>Aucune photo n'a été publiée de votre part!</h3>
+                <% } else { %> 
+
+                    <% for (let i = 0; i < Userphoto.length; i++) { %> 
+
+                        <div class="photo-card">
+                            <div class="photo-card_up">
+                                <div class="photo-card_likes">
+                                    <a class="likes" href="/like/<%=Userphoto[i].id %>"><p><%=Userphoto[i].likes.length %> <i class="ri-heart-3-fill"></i></p></a>
+                                </div>
+
+                                <div class="photo-card_comment">
+                                    <a class="likes" href="/photo/<%=Userphoto[i].id %>"><p><%=Userphoto[i].comment.length %> <i class="ri-chat-3-fill"></i></p></a>
+                                </div>
+        
+                                <div class="card_img">
+                                    <img src="./img/photo/<%=Userphoto[i].photo %>" alt="Photo name">
+                                </div>
+                            </div>
+                            <div class="photo-card_bottom">
+        
+                                <div class="photo_des">
+                                    <div class="descr"><span>Posted By: <br> <%= user.username %> <br> Created At : <%=Userphoto[i].created_At.toLocaleString('fr-fr', {day :'numeric', month: 'long', year:
+                                        'numeric'}) %></span></div>
+                                </div>
+        
+                                <div class="photo_button">
+                                    <a href="/delete/<%=Userphoto[i].photo %>" class="btns btn-red">Supprimer <i class="ri-delete-bin-6-fill"></i></a>
+                                </div>
+        
+                            </div>
+                        </div>
+
+                    <% } %>
+
+                <% } %>
+
+                
+
+            </section>
+            
+        </div>     
+
+        <%- include('./partials/footer.ejs') %>
+</html>

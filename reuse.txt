@@ -1,0 +1,36 @@
+
+            <section class="main_photo">
+                <% if (topFive.length == 0){ %>
+                        <h3> Aucune photo Pour le moment!</h3>
+                <% } else { %> 
+
+                    <% for (let i = 0; i < topFive.length; i++) { %> 
+
+                        <div class="photo-card">
+                            <div class="photo-card_up">
+                                <div class="photo-card_likes">
+                                    <a class="likes" href="/liketopFive/<%=topFive[i].id %>"><p><%=topFive[i].likes.length %> <i class="ri-heart-3-fill"></i></p></a>
+                                </div>
+        
+                                <div class="card_img">
+                                    <img src="./img/photo/<%=topFive[i].photo %>" alt="Photo name">
+                                </div>
+                            </div>
+                            <div class="photo-card_bottom">
+        
+                                <div class="photo_des">
+                                    <div class="descr"><span>Posted By: <br> <%= topFive[i].postedBy.username %> <br> Created At : <%=topFive[i].created_At.toLocaleString('fr-fr', {day :'numeric', month: 'long', year:
+                                        'numeric'}) %></span></div>
+                                    <img src="./img/user/user-10.jpg" alt="">
+                                </div>
+        
+                            </div>
+                        </div>
+
+                    <% } %>
+
+                <% } %>
+
+                
+
+            </section>

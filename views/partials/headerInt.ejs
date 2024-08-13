@@ -1,0 +1,47 @@
+<header class="header">
+    <nav class="nav ">
+      <div class="header__logo">
+          <a href=""><i class="ri-camera-lens-fill"></i></a>
+        </div>
+
+    <a href="/" class="navlink"> HOME</a>
+    <a href="/allphoto" class="navlink"> ALL PHOTO</a>
+  </nav>
+
+
+ <% if(user==="none") { %>
+      <nav class="nav nav-user">
+        <a href="/singin" class="navlink">SIGN IN</a>
+        <a href="/login" class="navlink">LOGIN</a>
+      </nav>
+
+  <% }else{%>
+
+    <nav class="nav nav-user">
+      <a href="/mypost" class="navlink">MES PHOTO</a>
+      <a href="/logout" class="navlink"><i class="ri-shut-down-line"></i> LOGOUT</a>
+
+      <a href="#" class="navlink">
+        <img class="nav_user-img" src="/./img/user/<%= user.photo %>" alt="">
+        <span><%= user.username %></span>
+      </a>
+
+    </nav>
+
+  <%  } %>
+
+  <% if(success && success !="") {%>
+    <div class="alerts alertSuccess">
+        <h1><i class="ri-emotion-happy-line"></i></h1>
+        <p><%= success %></p>
+    </div>
+ <% } %>
+
+ <% if(error && error !="") {%>
+    <div class="alerts alertDanger">
+        <h1><i class="ri-emotion-unhappy-line"></i></h1>
+        <p><%= error %></p>
+    </div>
+ <% } %>
+
+</header>
